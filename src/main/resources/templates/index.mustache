@@ -6,5 +6,21 @@
 </head>
 <body>
     <h1>스프링 부트 카카오 로그인 테스트</h1>
+    <h3>게스트 권한 확인</h3>
+    <a href="/guest" role="button">게스트 페이지</a>
+    {{#userName}}
+        <h3>유저 정보</h3>
+        Logged in as: <span id="user">{{userName}}</span>
+        <a href="/logout" role="button">로그아웃</a>
+    {{/userName}}
+    {{^userName}}
+        <h3>로그인 버튼</h3>
+        <a href="oauth2/authorization/google">
+            <img src="images/google_login.png" alt="구글 로그인" />
+        </a>
+        <a href="/oauth2/authorization/kakao">
+            <img src="images/kakao_login.png" alt="카카오 로그인" />
+        </a>
+    {{/userName}}
 </body>
 </html>
