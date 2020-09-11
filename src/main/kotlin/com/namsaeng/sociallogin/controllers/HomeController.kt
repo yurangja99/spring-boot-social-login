@@ -15,8 +15,16 @@ class HomeController {
     @GetMapping("/")
     fun home(model: Model): String {
         val user: SessionUser? = httpSession.getAttribute("user") as SessionUser?
-        if (user != null)
+        if (user != null) {
             model.addAttribute("userName", user.name)
+            model.addAttribute("userEmail", user.email)
+            model.addAttribute("userPicture", user.picture ?: "null")
+            println("userName: ${user.name}")
+            println("userEmail: ${user.email}")
+            println("userPicture: ${user.picture ?: "null"}")
+        } else {
+            println("null user")
+        }
         return "index"
     }
 
