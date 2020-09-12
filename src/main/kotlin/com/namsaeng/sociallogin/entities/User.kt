@@ -15,12 +15,15 @@ class User (
         @Column(name="picture")
         var picture: String?,
         @Column(name="role", nullable=false)
-        var role: String
+        var role: String,
+        @Column(name="access_token", nullable=false)
+        var accessToken: String
 ) {
-    constructor (): this (name="name", email="email", picture=null, role="ROLE_GUEST")
-    fun update (name: String, picture: String?): User {
+    constructor (): this (name="name", email="email", picture=null, role="ROLE_GUEST", accessToken="access_token")
+    fun update (name: String, picture: String?, accessToken: String): User {
         this.name = name
-        this.picture = picture;
+        this.picture = picture
+        this.accessToken = accessToken
         return this
     }
     fun getRoleKey(): String {

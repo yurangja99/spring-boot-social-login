@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService
+import org.springframework.security.oauth2.core.OAuth2AccessToken
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User
 import org.springframework.security.oauth2.core.user.OAuth2User
 import org.springframework.stereotype.Service
@@ -27,8 +28,15 @@ class CustomOAuth2UserService (
         val registrationId: String = userRequest.clientRegistration.registrationId
         // OAuth2 로그인 시 키가 되는 필드값. 여러 서비스를 이용할 때 사용
         val userNameAttributeName: String = userRequest.clientRegistration.providerDetails.userInfoEndpoint.userNameAttributeName
+        // Access Token 객체를 얻어 낸다. 토큰, 만료 시각 등이 들어 있다.
+        val accessToken: OAuth2AccessToken = userRequest.accessToken
         // 사용자의 attribute 담을 클래스
-        val attributes: OAuthAttributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.attributes)
+        val attributes: OAuthAttributes = OAuthAttributes.of(
+                registrationId,
+                userNameAttributeName,
+                accessToken,
+                oAuth2User.attributes
+        )
         val user: User = saveOrUpdate(attributes)
         // 세션에 사용자 정보를 저장할 때 필요한 DTO 클래스 (직렬화 지원)
         httpSession.setAttribute("user", SessionUser(user))
@@ -44,10 +52,12 @@ class CustomOAuth2UserService (
         println(attributes.name)
         println(attributes.email)
         println(attributes.picture)
+        println(attributes.accessToken.tokenValue)
+        println(attributes.accessToken.expiresAt)
         println()
         // 처음 가입 시, user가 null이 되어 attributes.toEntity()가 실행됨.
         val user: User = userRepository.findByEmail(attributes.email)
                 ?: attributes.toEntity()
-        return userRepository.save(user.update(attributes.name, attributes.picture))
+        return userRepository.save(user.update(attributes.name, attributes.picture, attributes.accessToken.tokenValue))
     }
 }
