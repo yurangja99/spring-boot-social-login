@@ -46,3 +46,6 @@
 ### 2020/09/12 (#5)
 - access token을 DB에 저장 (user 테이블에 access_token 칼럼을 text not null 타입으로 추가)
 - access token이 expired되면 다시 로그인 화면이 나타나는 것으로 추정
+### 2020/09/12 (#6)
+- 테스트 코드 작성을 위한 build.gradle.kts, SocialloginApplicationTests.kt 수정
+- 이제 "/"에 접속했을 때 "\<h1>스프링 부트 소셜 로그인 테스트\</h1>"의 포함 유무를 통해 메인 화면이 잘 나타나는지 테스트 할 수 있음.
