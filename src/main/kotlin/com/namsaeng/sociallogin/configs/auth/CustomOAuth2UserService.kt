@@ -40,9 +40,11 @@ class CustomOAuth2UserService (
     }
 
     private fun saveOrUpdate (attributes: OAuthAttributes): User {
+        println("Attributes: ")
         println(attributes.name)
         println(attributes.email)
         println(attributes.picture)
+        println()
         // 처음 가입 시, user가 null이 되어 attributes.toEntity()가 실행됨.
         val user: User = userRepository.findByEmail(attributes.email)
                 ?: attributes.toEntity()

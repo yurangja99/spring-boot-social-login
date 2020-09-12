@@ -16,9 +16,11 @@ class OAuthAttributes(
                 userNameAttributeName: String,
                 attributes: Map<String, Any>
         ): OAuthAttributes {
-            if ("naver" == registrationId)
-                return ofNaver("id", attributes)
-            return ofGoogle(userNameAttributeName, attributes)
+            when (registrationId) {
+                "naver" -> return ofNaver("id", attributes)
+                "kakao" -> return ofKakao(userNameAttributeName, attributes)
+                else -> return ofGoogle(userNameAttributeName, attributes)
+            }
         }
 
         private fun ofGoogle(
@@ -42,6 +44,26 @@ class OAuthAttributes(
                     email = response["email"]?.toString() ?: "",
                     picture = response["profile_image"]?.toString(),
                     attributes = response,
+                    nameAttributeKey = userNameAttributeName
+            )
+        }
+
+        private fun ofKakao(
+                userNameAttributeName: String, attributes: Map<String, Any>
+        ): OAuthAttributes {
+            val kakaoAccount: Map<String, Any> = attributes["kakao_account"] as Map<String, Any>
+            val profile: Map<String, Any> = kakaoAccount["profile"] as Map<String, Any>
+            val attribute: Map<String, Any> = mapOf(
+                    Pair("id", attributes["id"]?.toString() ?: ""),
+                    Pair("name", profile["nickname"]?.toString() ?: ""),
+                    Pair("email", kakaoAccount["email"]?.toString() ?: ""),
+                    Pair("picture", profile["profile_image_url"]?.toString() ?: "")
+            )
+            return OAuthAttributes(
+                    name = attribute["name"] as String,
+                    email = attribute["email"] as String,
+                    picture = attribute["picture"] as String,
+                    attributes = attribute,
                     nameAttributeKey = userNameAttributeName
             )
         }

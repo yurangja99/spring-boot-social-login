@@ -19,9 +19,10 @@ class HomeController {
             model.addAttribute("userName", user.name)
             model.addAttribute("userEmail", user.email)
             model.addAttribute("userPicture", user.picture ?: "null")
+            println("User Info at Controller: ")
             println("userName: ${user.name}")
             println("userEmail: ${user.email}")
-            println("userPicture: ${user.picture ?: "null"}")
+            println("userPicture: ${user.picture ?: "null"}\n")
         } else {
             println("null user")
         }
