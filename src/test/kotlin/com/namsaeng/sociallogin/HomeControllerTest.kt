@@ -13,15 +13,18 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class SocialloginApplicationTests (
+class HomeControllerTest (
 		@Autowired val restTemplate: TestRestTemplate
 ) {
+	// ***********************************
+	// TestRestTemplate를 이용한 유닛 테스트
+	// ***********************************
 
+	// 메인 화면이 잘 나오는지 테스트
 	@Test
 	fun loadMainPage() {
 		val entity = restTemplate.getForEntity<String>("/")
 		assertEquals(entity.statusCode, HttpStatus.OK)
 		assertTrue(entity.body?.contains("<h1>스프링 부트 소셜 로그인 테스트</h1>") ?: false)
 	}
-
 }

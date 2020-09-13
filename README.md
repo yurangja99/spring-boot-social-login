@@ -49,3 +49,7 @@
 ### 2020/09/12 (#6)
 - 테스트 코드 작성을 위한 build.gradle.kts, SocialloginApplicationTests.kt 수정
 - 이제 "/"에 접속했을 때 "\<h1>스프링 부트 소셜 로그인 테스트\</h1>"의 포함 유무를 통해 메인 화면이 잘 나타나는지 테스트 할 수 있음.
+### 2020/09/14 (#7)
+- RestController와 JpaRepository를 이용하여 Pageable하게 API를 호출하는 것을 구현함. 앞으로의 프로젝트에서는 데이터가 많은 경우가 있을 것이므로 Pagination된 JpaRepository를 기존의 CrudRepository 대신 쓸 것으로 예상됨. 
+- 테스트 코드를 RestTemplate을 이용한 방법과 MockMvc를 이용한 방법, 총 2가지로 구현함. 장단점이 있기 때문에 상황에 맞게 사용하면 될 것 같음. 
+- Spring Security가 적용된 프로젝트에서 적절한 권한을 주어 테스트하는 것을 구현함.

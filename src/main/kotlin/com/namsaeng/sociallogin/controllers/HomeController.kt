@@ -10,10 +10,10 @@ import javax.servlet.http.HttpSession
 @Controller
 class HomeController {
     @Autowired
-    lateinit var httpSession: HttpSession
+    private lateinit var httpSession: HttpSession
 
     @GetMapping("/")
-    fun home(model: Model): String {
+    private fun home(model: Model): String {
         val user: SessionUser? = httpSession.getAttribute("user") as SessionUser?
         if (user != null) {
             model.addAttribute("userName", user.name)
@@ -30,7 +30,7 @@ class HomeController {
     }
 
     @GetMapping("/guest")
-    fun index(): String {
+    private fun index(): String {
         return "guest"
     }
 }
