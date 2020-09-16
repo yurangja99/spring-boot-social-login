@@ -56,3 +56,7 @@
 - RestController와 JpaRepository를 이용하여 Pageable하게 API를 호출하는 것을 구현함. 앞으로의 프로젝트에서는 데이터가 많은 경우가 있을 것이므로 Pagination된 JpaRepository를 기존의 CrudRepository 대신 쓸 것으로 예상됨. 
 - 테스트 코드를 RestTemplate을 이용한 방법과 MockMvc를 이용한 방법, 총 2가지로 구현함. 장단점이 있기 때문에 상황에 맞게 사용하면 될 것 같음. 
 - Spring Security가 적용된 프로젝트에서 적절한 권한을 주어 테스트하는 것을 구현함.
+### 2020/09/16 (#8)
+- LogFactory와 Log를 이용하여 로그를 더욱 형태에 맞게 남김
+- guest 페이지에서도 자신의 정보를 볼 수 있도록 수정함.
+- 로드 밸런서를 위한 /health 기능을 구현함.

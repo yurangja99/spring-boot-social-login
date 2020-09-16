@@ -9,5 +9,15 @@
 <h3>게스트 페이지</h3>
 <p>게스트 권한을 가지게 되었습니다.</p>
 <p>로그인 상태로 접근하였거나, 이 페이지로 들어오는 과정에서 자동으로 소셜 로그인이 진행되었습니다. </p>
+{{#userName}}
+    <h3>유저 정보</h3>
+    <span>{{userName}}</span>
+    <br/>
+    <span>{{userEmail}}</span>
+    <br/>
+    <img src={{userPicture}} alt="프로필 사진" />
+    <br/>
+    <a href="/logout" role="button">로그아웃</a>
+{{/userName}}
 </body>
 </html>

@@ -19,6 +19,7 @@ class SecurityConfig(
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/images/**").permitAll()
+                .antMatchers("/health").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()

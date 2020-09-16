@@ -4,6 +4,8 @@ import com.namsaeng.sociallogin.configs.auth.dtos.OAuthAttributes
 import com.namsaeng.sociallogin.configs.auth.dtos.SessionUser
 import com.namsaeng.sociallogin.entities.User
 import com.namsaeng.sociallogin.repositories.UserRepository
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
@@ -20,6 +22,8 @@ class CustomOAuth2UserService (
         val userRepository: UserRepository,
         val httpSession: HttpSession
 ): OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+    private val log: Log = LogFactory.getLog("OAuth2UserServiceLogger")
+
     override fun loadUser(userRequest: OAuth2UserRequest): OAuth2User {
         val delegate: OAuth2UserService<OAuth2UserRequest, OAuth2User> =
                 DefaultOAuth2UserService()
@@ -48,13 +52,12 @@ class CustomOAuth2UserService (
     }
 
     private fun saveOrUpdate (attributes: OAuthAttributes): User {
-        println("Attributes: ")
-        println(attributes.name)
-        println(attributes.email)
-        println(attributes.picture)
-        println(attributes.accessToken.tokenValue)
-        println(attributes.accessToken.expiresAt)
-        println()
+        log.info("Login with")
+        log.info("userName: ${attributes.name}")
+        log.info("userEmail: ${attributes.email}")
+        log.info("userPicture: ${attributes.picture}")
+        log.info("userToken: ${attributes.accessToken.tokenValue}")
+        log.info("userTokenExpire: ${attributes.accessToken.expiresAt}")
         // 처음 가입 시, user가 null이 되어 attributes.toEntity()가 실행됨.
         val user: User = userRepository.findByEmail(attributes.email)
                 ?: attributes.toEntity()
