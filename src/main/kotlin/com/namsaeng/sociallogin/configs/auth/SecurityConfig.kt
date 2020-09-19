@@ -20,6 +20,7 @@ class SecurityConfig(
                 .antMatchers("/").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/health").permitAll()
+                .antMatchers("/firebase-messaging-sw.js").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout()

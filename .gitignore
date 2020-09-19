@@ -7,6 +7,7 @@ build/
 
 ### application.properties ###
 **/application.properties
+**/valid-amplifier-289205-firebase-adminsdk-bq7tc-26c30c9c21.json
 
 ### STS ###
 .apt_generated

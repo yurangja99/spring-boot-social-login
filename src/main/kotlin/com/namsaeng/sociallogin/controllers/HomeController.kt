@@ -21,10 +21,10 @@ class HomeController {
         log.info("Accessed /")
         val user: SessionUser? = httpSession.getAttribute("user") as SessionUser?
         if (user != null) {
-            model.addAttribute("userName", user.name)
+            model.addAttribute("userNickname", user.name)
             model.addAttribute("userEmail", user.email)
             model.addAttribute("userPicture", user.picture ?: "null")
-            log.info("userName: ${user.name}")
+            log.info("userNickname: ${user.name}")
             log.info("userEmail: ${user.email}")
             log.info("userPicture: ${user.picture ?: "null"}")
         }
@@ -36,10 +36,10 @@ class HomeController {
         log.info("Accessed /guest")
         val user: SessionUser? = httpSession.getAttribute("user") as SessionUser?
         if (user != null) {
-            model.addAttribute("userName", user.name)
+            model.addAttribute("userNickname", user.name)
             model.addAttribute("userEmail", user.email)
             model.addAttribute("userPicture", user.picture ?: "null")
-            log.info("userName: ${user.name}")
+            log.info("userNickname: ${user.name}")
             log.info("userEmail: ${user.email}")
             log.info("userPicture: ${user.picture ?: "null"}")
         }

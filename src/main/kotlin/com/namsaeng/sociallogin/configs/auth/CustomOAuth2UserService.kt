@@ -61,6 +61,6 @@ class CustomOAuth2UserService (
         // 처음 가입 시, user가 null이 되어 attributes.toEntity()가 실행됨.
         val user: User = userRepository.findByEmail(attributes.email)
                 ?: attributes.toEntity()
-        return userRepository.save(user.update(attributes.name, attributes.picture, attributes.accessToken.tokenValue))
+        return userRepository.save(user.update(attributes.name, attributes.picture, attributes.accessToken.tokenValue, user.fbToken))
     }
 }

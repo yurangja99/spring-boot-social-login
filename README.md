@@ -13,7 +13,7 @@
 - Spring Web, Devtools, Mustache
 
 ## 실험 방법
-**(주의) src/main/resources/application.properties 파일은 Github Repository에 업로드하지 않았으므로 개인적으로 얻어야 함.**
+**(주의) src/main/resources/application.properties 파일과 src/main/resources/valid-amplifier-289205-firebase-adminsdk-bq7tc-26c30c9c21.json 파일은 Github Repository에 업로드하지 않았으므로 개인적으로 얻어야 함.**
 1. MySQL을 설치하고, user 테이블을 생성. 칼럼 구조는 아래 참조.
     - id bigint not null auto_increment primary key
     - name text not null
@@ -21,6 +21,7 @@
     - picture text
     - role text not null 
     - access_token text not null
+    - fb_token text
 2. 원하는 디렉토리로 이동
 3. git clone https://github.com/yurangja99/spring-boot-social-login.git
 4. 개인적으로 받은 application.properties 파일에서 spring.datasource.로 시작하는 속성들을 자신의 MySQL 서버에 맞게 수정
@@ -62,3 +63,7 @@
 - 로드 밸런서를 위한 /health 기능을 구현함.
 ### 2020/09/16 (#9)
 - CORS 허용
+### 2020/09/19 (#10)
+- FCM(Firebase Cloud Message) 서비스를 이용한 푸시 알림 기능 추가
+- user 테이블에 fb_token 필드 추가
+- 윈도우 크롬 브라우저로 로그인 시, fetch API를 통해 /register로 보낸 요청의 결과가 나오는 문제 발생. 실제 프로젝트에서는 해결 가능할 것으로 보여 그냥 놔두었음. 
