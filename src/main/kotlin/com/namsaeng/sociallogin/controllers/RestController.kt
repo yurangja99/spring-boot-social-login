@@ -20,7 +20,7 @@ class RestController {
     // Health check용 API
     @GetMapping("health")
     private fun healthCheck (): String {
-        log.info("Accessed /health to do Health Check")
+        // log.info("Accessed /health to do Health Check")
         return "healthy"
     }
 
