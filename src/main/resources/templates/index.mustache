@@ -75,7 +75,8 @@
                             messaging.onMessage(payload => {
                                 const title = payload.notification.title
                                 const options = {
-                                    body : payload.notification.body
+                                    body : payload.notification.body,
+                                    icon : '/images/icon.png'
                                 }
                                 navigator.serviceWorker.ready.then(registration => {
                                     registration.showNotification(title, options);
@@ -95,11 +96,12 @@
 
         return {
             init: function () {
-                init()
+                console.log("init");
+                init();
             }
         }
       })()
-      console.log("init");
+
       firebaseModule.init();
     </script>
 </body>

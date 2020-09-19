@@ -13,4 +13,4 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-const messaging = firebase.messaging()
+const messaging = firebase.messaging();

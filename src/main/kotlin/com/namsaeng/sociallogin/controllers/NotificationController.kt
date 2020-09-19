@@ -44,7 +44,7 @@ class NotificationController {
 
     // 자신에게 푸시 알림 보내기
     @PostMapping("/self/message")
-    private fun sendToSelf () {
+    private fun sendMessageToSelf () {
         log.info("Accessed /self/message")
         val user: SessionUser = httpSession.getAttribute("user")!! as SessionUser
         val userEntity: User = userRepository.findById(user.id).orElse(null)
