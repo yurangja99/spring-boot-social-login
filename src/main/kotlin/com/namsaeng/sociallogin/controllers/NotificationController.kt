@@ -50,7 +50,7 @@ class NotificationController {
         val userEntity: User = userRepository.findById(user.id).orElse(null)
                 ?: throw NotFoundException("no such user")
         if (userEntity.fbToken == null) {
-            log.info("User ${userEntity.id} doesn't have Firebase token! Check service worker and patch /register.")
+            log.error("User ${userEntity.id} doesn't have Firebase token! Check service worker and patch /register.")
         } else {
             log.info("User ${userEntity.id} have Firebase token ${userEntity.fbToken}")
             val request: NotificationRequest = NotificationRequest(
