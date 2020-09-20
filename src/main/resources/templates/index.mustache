@@ -16,8 +16,6 @@
         <br/>
         <img src={{userPicture}} alt="프로필 사진" />
         <br/>
-        <input type="button" onClick="customShowNotification();" value="푸시 알림 보기">
-        <br/>
         <a href="/logout" role="button" methods>로그아웃</a>
     {{/userNickname}}
     {{^userNickname}}
@@ -32,24 +30,5 @@
             <img src="images/kakao_login.png" alt="카카오 로그인" />
         </a>
     {{/userNickname}}
-
-    <!-- 푸시 알림 -->
-    <script>
-        function customShowNotification () {
-            var img = '/images/icon.png';
-            var title = 'Push Notification';
-            var text = 'Push Message';
-            if ('Notification' in window) {
-                Notification.requestPermission();
-                if (Notification.permission === 'granted') {
-                    var notification = new Notification(title, {body: text, icon: img});
-                } else {
-                    alert(title + '\n' + text);
-                }
-            } else {
-                alert(title + '\n' + text);
-            }
-        }
-    </script>
 </body>
 </html>

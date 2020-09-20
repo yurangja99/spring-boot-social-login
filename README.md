@@ -76,4 +76,7 @@
 - 브라우저의 navigator에 serviceworker 항목이 없는 경우 안내창을 띄우도록 함.
 ### 2020/09/20 (#13)
 - Firebase 관련 의존성, 코드 삭제
-- 푸시 알림 보기 버튼을 클릭하면 Push Notification을, 혹시 지원하지 않는다면 평범한 alert를 하도록 하였음. 
+- 푸시 알림 보기 버튼을 클릭하면 Push Notification을, 혹시 지원하지 않는다면 평범한 alert를 하도록 하였음.
+### 2020/09/21 (#14)
+- spring-boot-starter-websocket 의존성을 추가하고, 웹소켓과 STOMP를 이용한 실시간 통신 구현.
+- 아직 구독 endpoint는 하나지만, 추후 추가 가능. 
