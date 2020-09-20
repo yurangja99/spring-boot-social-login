@@ -84,6 +84,8 @@ function onMessageReceived(payload) {
     if(message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
+        // 푸시 알림 띄우기
+        customShowNotification(message.sender, message.content);
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
@@ -129,6 +131,19 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
+function customShowNotification (title, text) {
+    var img = '/images/icon.png';
+    if ('Notification' in window) {
+        Notification.requestPermission();
+        if (Notification.permission === 'granted') {
+            var notification = new Notification(title, {body: text, icon: img});
+        } else {
+            alert(title + '\n' + text);
+        }
+    } else {
+        alert(title + '\n' + text);
+    }
+}
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
