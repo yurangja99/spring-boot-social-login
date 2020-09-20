@@ -17,16 +17,13 @@ class User (
         @Column(name="role", nullable=false)
         var role: String,
         @Column(name="access_token", nullable=false)
-        var accessToken: String,
-        @Column(name="fb_token")
-        var fbToken: String? = null
+        var accessToken: String
 ) {
     constructor (): this (name="name", email="email", picture=null, role="ROLE_GUEST", accessToken="access_token")
-    fun update (name: String, picture: String?, accessToken: String, fbToken: String?): User {
+    fun update (name: String, picture: String?, accessToken: String): User {
         this.name = name
         this.picture = picture
         this.accessToken = accessToken
-        this.fbToken = fbToken
         return this
     }
     fun getRoleKey(): String {

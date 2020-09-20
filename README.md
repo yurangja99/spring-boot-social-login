@@ -13,7 +13,7 @@
 - Spring Web, Devtools, Mustache
 
 ## 실험 방법
-**(주의) src/main/resources/application.properties 파일과 src/main/resources/valid-amplifier-289205-firebase-adminsdk-bq7tc-26c30c9c21.json 파일은 Github Repository에 업로드하지 않았으므로 개인적으로 얻어야 함.**
+**(주의) src/main/resources/application.properties 파일은 Github Repository에 업로드하지 않았으므로 개인적으로 얻어야 함.**
 1. MySQL을 설치하고, user 테이블을 생성. 칼럼 구조는 아래 참조.
     - id bigint not null auto_increment primary key
     - name text not null
@@ -21,7 +21,6 @@
     - picture text
     - role text not null 
     - access_token text not null
-    - fb_token text
 2. 원하는 디렉토리로 이동
 3. git clone https://github.com/yurangja99/spring-boot-social-login.git
 4. 개인적으로 받은 application.properties 파일에서 spring.datasource.로 시작하는 속성들을 자신의 MySQL 서버에 맞게 수정
@@ -75,3 +74,6 @@
 ### 2020/09/19 (#12)
 - Firebase 토큰이 없을 경우의 로그를 info에서 error로 수정
 - 브라우저의 navigator에 serviceworker 항목이 없는 경우 안내창을 띄우도록 함.
+### 2020/09/20 (#13)
+- Firebase 관련 의존성, 코드 삭제
+- 푸시 알림 보기 버튼을 클릭하면 Push Notification을, 혹시 지원하지 않는다면 평범한 alert를 하도록 하였음. 

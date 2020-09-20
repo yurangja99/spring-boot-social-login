@@ -7,10 +7,9 @@ class SessionUser (
         var id: Long,
         var name: String,
         var email: String,
-        var picture: String?,
-        var fbToken: String?
+        var picture: String?
 ): Serializable {
     constructor (user: User): this (
-            user.id, user.name, user.email, user.picture, user.fbToken
+            user.id, user.name, user.email, user.picture
     )
 }
