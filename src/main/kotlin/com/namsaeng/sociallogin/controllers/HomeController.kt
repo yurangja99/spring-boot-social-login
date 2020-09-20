@@ -24,24 +24,23 @@ class HomeController {
             model.addAttribute("userNickname", user.name)
             model.addAttribute("userEmail", user.email)
             model.addAttribute("userPicture", user.picture ?: "null")
-            log.info("userNickname: ${user.name}")
-            log.info("userEmail: ${user.email}")
-            log.info("userPicture: ${user.picture ?: "null"}")
+            log.info("Accessed /: ${user.name}, ${user.email}, ${user.picture ?: "null"}")
+        } else {
+            log.info("Accessed /")
         }
         return "index"
     }
 
     @GetMapping("/guest")
     private fun index(model: Model): String {
-        log.info("Accessed /guest")
         val user: SessionUser? = httpSession.getAttribute("user") as SessionUser?
         if (user != null) {
             model.addAttribute("userNickname", user.name)
             model.addAttribute("userEmail", user.email)
             model.addAttribute("userPicture", user.picture ?: "null")
-            log.info("userNickname: ${user.name}")
-            log.info("userEmail: ${user.email}")
-            log.info("userPicture: ${user.picture ?: "null"}")
+            log.info("Accessed /guest: ${user.name}, ${user.email}, ${user.picture ?: "null"}")
+        } else {
+            log.info("Accessed /guest")
         }
         return "guest"
     }
